@@ -1,0 +1,28 @@
+{
+  "name": "jspsych-aperture-tracking",
+  "version": "0.1.0",
+  "description": "A jsPsych extension that combines a spotlight/aperture view with mouse tracking. Participants must move their mouse to reveal content through a movable window, while all mouse movements are recorded.",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.js --outdir ./dist --format esm --external jspsych"
+  },
+  "peerDependencies": {
+    "jspsych": ">=7.0.0"
+  },
+  "keywords": [
+    "jspsych",
+    "extension",
+    "mouse-tracking",
+    "aperture",
+    "spotlight",
+    "attention",
+    "covert-attention"
+  ],
+  "license": "MIT"
+}

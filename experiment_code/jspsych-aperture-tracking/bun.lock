@@ -1,0 +1,22 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "jspsych-aperture-tracking",
+      "peerDependencies": {
+        "jspsych": ">=7.0.0",
+      },
+    },
+  },
+  "packages": {
+    "auto-bind": ["auto-bind@4.0.0", "", {}, "sha512-Hdw8qdNiqdJ8LqT0iK0sVzkFbzg6fhnQqqfWhBDxcHZvU75+B+ayzTy8x+k5Ix0Y92XOhOUlx74ps+bA6BeYMQ=="],
+
+    "jspsych": ["jspsych@8.2.3", "", { "dependencies": { "auto-bind": "^4.0.0", "random-words": "^1.1.1", "seedrandom": "^3.0.5", "type-fest": "^2.9.0" } }, "sha512-jqKatUYHtDDxZgwNEkfyc9w11LLvDOCbfyTMg0J9a0WdCCUMOxlOYvCCk/o8fwH3sy4hTvAplQYhDg8XZ0SAeQ=="],
+
+    "random-words": ["random-words@1.3.0", "", { "dependencies": { "seedrandom": "^3.0.5" } }, "sha512-brwCGe+DN9DqZrAQVNj1Tct1Lody6GrYL/7uei5wfjeQdacFyFd2h/51LNlOoBMzIKMS9xohuL4+wlF/z1g/xg=="],
+
+    "seedrandom": ["seedrandom@3.0.5", "", {}, "sha512-8OwmbklUNzwezjGInmZ+2clQmExQPvomqjL7LFqOYqtmuxRgQYqOD3mHaU+MvZn5FLUeVxVfQjwLZW/n/JFuqg=="],
+
+    "type-fest": ["type-fest@2.19.0", "", {}, "sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA=="],
+  }
+}

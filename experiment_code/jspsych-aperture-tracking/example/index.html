@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aperture Tracking Extension - Example</title>
+    <script src="https://unpkg.com/jspsych@7.3.4"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
+    <link
+      href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css"
+      rel="stylesheet"
+    />
+    <!-- Load the extension (use dist/index.js after building, or the src directly) -->
+    <script src="../dist/index.js" type="module"></script>
+  </head>
+  <body></body>
+  <script type="module">
+    // If using the built version:
+    import ApertureTrackingExtension from "../dist/index.js";
+
+    const jsPsych = initJsPsych({
+      extensions: [
+        {
+          type: ApertureTrackingExtension,
+          params: { minimum_sample_time: 50 },
+        },
+      ],
+      on_finish: () => {
+        jsPsych.data.displayData();
+      },
+    });
+
+    // --- Trial 1: Basic aperture trial ---
+    const apertureTrial = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: `
+        <div style="display: flex; gap: 200px; justify-content: center; align-items: center; height: 400px;">
+          <div id="target-left" style="width: 150px; height: 150px; background: coral; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">
+            A
+          </div>
+          <div id="target-right" style="width: 150px; height: 150px; background: steelblue; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">
+            B
+          </div>
+        </div>
+      `,
+      choices: ["Left", "Right"],
+      prompt: "<p>Move your mouse to reveal the stimuli. Which do you prefer?</p>",
+      extensions: [
+        {
+          type: ApertureTrackingExtension,
+          params: {
+            aperture_radius: 80,
+            blur_amount: 25,
+            grayscale: true,
+            overlay_opacity: 0.7,
+            edge_softness: 25,
+            targets: ["#target-left", "#target-right"],
+          },
+        },
+      ],
+    };
+
+    // --- Trial 2: Aperture with different settings ---
+    const apertureTrial2 = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: `
+        <div style="display: flex; gap: 100px; justify-content: center; align-items: center; height: 400px;">
+          <div id="stim-1" style="padding: 20px; background: #2ecc71; border-radius: 8px; font-size: 20px;">Option 1: +50 pts</div>
+          <div id="stim-2" style="padding: 20px; background: #e74c3c; border-radius: 8px; font-size: 20px;">Option 2: +30 pts</div>
+          <div id="stim-3" style="padding: 20px; background: #3498db; border-radius: 8px; font-size: 20px;">Option 3: +70 pts</div>
+        </div>
+      `,
+      choices: ["Option 1", "Option 2", "Option 3"],
+      prompt: "<p>Explore the options with your mouse, then choose.</p>",
+      extensions: [
+        {
+          type: ApertureTrackingExtension,
+          params: {
+            aperture_radius: 60,
+            blur_amount: 15,
+            grayscale: false,
+            overlay_opacity: 0.8,
+            targets: ["#stim-1", "#stim-2", "#stim-3"],
+          },
+        },
+      ],
+    };
+
+    // --- Trial 3: Mouse tracking only (no aperture) ---
+    const trackingOnlyTrial = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: `
+        <div style="display: flex; gap: 200px; justify-content: center; align-items: center; height: 400px;">
+          <div id="open-left" style="width: 150px; height: 150px; background: gold; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+            X
+          </div>
+          <div id="open-right" style="width: 150px; height: 150px; background: mediumpurple; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+            Y
+          </div>
+        </div>
+      `,
+      choices: ["Left", "Right"],
+      prompt: "<p>No aperture here - just tracking your mouse. Pick one.</p>",
+      extensions: [
+        {
+          type: ApertureTrackingExtension,
+          params: {
+            aperture: false,
+            targets: ["#open-left", "#open-right"],
+          },
+        },
+      ],
+    };
+
+    const timeline = [apertureTrial, apertureTrial2, trackingOnlyTrial];
+
+    jsPsych.run(timeline);
+  </script>
+</html>
