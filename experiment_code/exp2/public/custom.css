@@ -1,0 +1,39 @@
+body {
+    /* Full viewport height to center the container */
+    height: 100vh; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    /* Flexbox container for the images */
+    display: flex;
+    /* Space between and around images */
+    justify-content: space-around; 
+    /* Full width of the parent container */
+    width: 100%; 
+    /* Max width to prevent images from becoming too large on wide screens */
+    max-width: 900px;
+}
+
+.img-wrapper {
+    /* Flexbox item, takes up 1/3 of the space */
+    flex-basis: 33%; 
+    /* To center the image inside its own wrapper */
+    text-align: center; 
+    /* Padding for spacing */
+    padding: 10px; 
+    /* Box-sizing to include padding in the total width */
+    box-sizing: border-box;
+}
+
+.img-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

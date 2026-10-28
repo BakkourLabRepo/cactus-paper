@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+*.DS_Store
+*node_modules
+*experiment_code/exp1# pixi environments
+.pixi/*
+!.pixi/config.toml
