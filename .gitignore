@@ -221,6 +221,24 @@ __marimo__/
 
 *.DS_Store
 *node_modules
-*experiment_code/exp1# pixi environments
+*experiment_code/exp1
 .pixi/*
 !.pixi/config.toml
+
+# exp2 fit/CV artifacts (multi-GB .nc/.npz — regenerable from fit scripts); JSON summaries tracked
+results/fits/**/*.nc
+results/fits/**/*.npz
+results/fits/**/*.npy
+# small draw files the stats/figure pipeline needs that only long fits regenerate
+!results/fits/udim_cache.npz
+!results/fits/cv_lpd.npz
+!results/fits/map_slope_draws.npy
+!results/fits/map_slope_cells.npz
+results/fits/logs/
+results/fits/_sweep_samples/
+results/figures/
+# participant data stays out of git (mirrors cactus)
+data/raw/
+data/processed/
+
+/.luarc.json

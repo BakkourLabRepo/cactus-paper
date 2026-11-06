@@ -1,0 +1,67 @@
+{
+  "_n_reps": 10,
+  "_n_subj": 109,
+  "_nominal_coverage": 0.95,
+  "W_color": {
+    "r_mean": 0.892,
+    "r_min": 0.869,
+    "coverage_mean": 0.912,
+    "coverage_min": 0.872
+  },
+  "W_shape": {
+    "r_mean": 0.864,
+    "r_min": 0.832,
+    "coverage_mean": 0.915,
+    "coverage_min": 0.853
+  },
+  "W_line": {
+    "r_mean": 0.926,
+    "r_min": 0.911,
+    "coverage_mean": 0.892,
+    "coverage_min": 0.835
+  },
+  "lam": {
+    "r_mean": 0.921,
+    "r_min": 0.891,
+    "coverage_mean": 0.926,
+    "coverage_min": 0.872
+  },
+  "gain": {
+    "r_mean": 0.843,
+    "r_min": 0.788,
+    "coverage_mean": 0.897,
+    "coverage_min": 0.807
+  },
+  "r_min_across_weights": 0.832,
+  "coverage_mean_all": 0.908,
+  "scale_confound_check": {
+    "per_rep_true_lam_gain_corr": [
+      0.219,
+      0.266,
+      0.274,
+      0.171,
+      0.266,
+      0.285,
+      0.31,
+      0.316,
+      0.271,
+      0.244
+    ],
+    "per_rep_recovered_lam_gain_corr": [
+      0.006,
+      0.182,
+      0.12,
+      0.096,
+      0.073,
+      0.12,
+      0.091,
+      0.182,
+      0.136,
+      0.125
+    ],
+    "n_reps_with_near_zero_true_corr": 0,
+    "recovered_corr_mean_all_reps": 0.113,
+    "recovered_corr_mean_near_zero_true_reps": null,
+    "_interpretation": "if recovered_corr_mean_near_zero_true_reps is near the observed +0.249 (corr_lam_gain) despite true corr ~0, fitting alone manufactures the coupling -- it is a null, not a finding. If recovered corr stays near 0 there too, the fitting procedure is not the source of +0.249."
+  }
+}

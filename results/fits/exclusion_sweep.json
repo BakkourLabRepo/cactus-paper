@@ -1,0 +1,950 @@
+{
+  "_meta": {
+    "full_ramp_benchmark": 0.15,
+    "fold_seed": 2026,
+    "mor_draws": "1500 warmup / 1500 draws x 4 chains",
+    "cv_draws": "600 warmup / 600 draws x 4 chains, 5 folds",
+    "quick": false,
+    "_warning": "delta-elpd sums over trials and the samples differ in trial count; compare rows on delta_per_1k_trials or z, never on raw delta",
+    "sample_sizes": {
+      "applied": 109,
+      "mouse_strict": 104,
+      "mouse_loose": 114,
+      "rt_strict": 87,
+      "rt_loose": 116,
+      "no_rt_rule": 129,
+      "prereg_learn_final": 73,
+      "prereg_learn_whole": 68,
+      "prereg_cascade": 80
+    }
+  },
+  "samples": {
+    "applied": {
+      "_description": "as reported: mouse >5% non-compliance, >20% of learning RTs below p10",
+      "n_subjects": 109,
+      "n_trials": 13076,
+      "within_band_slope": {
+        "max_rhat": 1.0021,
+        "n_divergences": 0,
+        "color": {
+          "mean": 0.113,
+          "lo": 0.0743,
+          "hi": 0.1505,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.753
+        },
+        "shape": {
+          "mean": 0.1224,
+          "lo": 0.0845,
+          "hi": 0.1618,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.816
+        },
+        "line": {
+          "mean": 0.1306,
+          "lo": 0.0879,
+          "hi": 0.173,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.871
+        },
+        "pooled": {
+          "mean": 0.122,
+          "lo": 0.0977,
+          "hi": 0.1451,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.813,
+          "frac_lo": 0.651,
+          "frac_hi": 0.967
+        }
+      },
+      "lam_to_payne": {
+        "n": 109,
+        "lam": {
+          "mean": 0.136,
+          "lo": 0.086,
+          "hi": 0.183,
+          "pdir": 1.0
+        },
+        "gain": {
+          "mean": -0.039,
+          "lo": -0.086,
+          "hi": 0.012,
+          "pdir": 0.938
+        }
+      },
+      "cv": {
+        "n_trials": 13076,
+        "folds": 5,
+        "elpd": {
+          "participant_map": -5499.5,
+          "participant_map_lambda": -4758.5,
+          "mor": -4665.7
+        },
+        "contrasts": {
+          "participant_map_lambda_minus_participant_map": {
+            "delta": 741.0,
+            "se": 36.4,
+            "z": 20.37,
+            "delta_per_1k_trials": 56.67,
+            "delta_div": 536.7,
+            "delta_nondiv": 204.2
+          },
+          "mor_minus_participant_map_lambda": {
+            "delta": 92.9,
+            "se": 13.5,
+            "z": 6.88,
+            "delta_per_1k_trials": 7.1,
+            "delta_div": 59.6,
+            "delta_nondiv": 33.3
+          }
+        }
+      },
+      "_seconds": 1279.8,
+      "knowledge": {
+        "n_subj_dim": 327,
+        "corr_gain_K": {
+          "mean": 0.413,
+          "lo": 0.327,
+          "hi": 0.498,
+          "pdir": 1.0
+        },
+        "corr_lam_K": {
+          "mean": -0.004,
+          "lo": -0.08,
+          "hi": 0.075,
+          "pdir": 0.565
+        },
+        "corr_weight_dacc_double_centered_propagated": {
+          "mean": 0.321,
+          "lo": 0.274,
+          "hi": 0.362,
+          "pdir": 1.0
+        }
+      }
+    },
+    "mouse_strict": {
+      "_description": "mouse non-compliance threshold 5% -> 2%",
+      "n_subjects": 104,
+      "n_trials": 12476,
+      "within_band_slope": {
+        "max_rhat": 1.003,
+        "n_divergences": 0,
+        "color": {
+          "mean": 0.1143,
+          "lo": 0.0771,
+          "hi": 0.1568,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.762
+        },
+        "shape": {
+          "mean": 0.1208,
+          "lo": 0.0823,
+          "hi": 0.1611,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.805
+        },
+        "line": {
+          "mean": 0.1296,
+          "lo": 0.0879,
+          "hi": 0.1728,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.864
+        },
+        "pooled": {
+          "mean": 0.1216,
+          "lo": 0.0983,
+          "hi": 0.1461,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.811,
+          "frac_lo": 0.655,
+          "frac_hi": 0.974
+        }
+      },
+      "lam_to_payne": {
+        "n": 104,
+        "lam": {
+          "mean": 0.131,
+          "lo": 0.082,
+          "hi": 0.182,
+          "pdir": 1.0
+        },
+        "gain": {
+          "mean": -0.028,
+          "lo": -0.079,
+          "hi": 0.025,
+          "pdir": 0.858
+        }
+      },
+      "cv": {
+        "n_trials": 12476,
+        "folds": 5,
+        "elpd": {
+          "participant_map": -5204.5,
+          "participant_map_lambda": -4520.3,
+          "mor": -4400.2
+        },
+        "contrasts": {
+          "participant_map_lambda_minus_participant_map": {
+            "delta": 684.2,
+            "se": 36.1,
+            "z": 18.95,
+            "delta_per_1k_trials": 54.84,
+            "delta_div": 497.8,
+            "delta_nondiv": 186.3
+          },
+          "mor_minus_participant_map_lambda": {
+            "delta": 120.1,
+            "se": 14.0,
+            "z": 8.61,
+            "delta_per_1k_trials": 9.63,
+            "delta_div": 67.2,
+            "delta_nondiv": 52.9
+          }
+        }
+      },
+      "_seconds": 1264.2,
+      "knowledge": {
+        "n_subj_dim": 312,
+        "corr_gain_K": {
+          "mean": 0.407,
+          "lo": 0.318,
+          "hi": 0.493,
+          "pdir": 1.0
+        },
+        "corr_lam_K": {
+          "mean": 0.005,
+          "lo": -0.071,
+          "hi": 0.085,
+          "pdir": 0.533
+        },
+        "corr_weight_dacc_double_centered_propagated": {
+          "mean": 0.293,
+          "lo": 0.246,
+          "hi": 0.338,
+          "pdir": 1.0
+        }
+      }
+    },
+    "mouse_loose": {
+      "_description": "mouse non-compliance threshold 5% -> 10%",
+      "n_subjects": 114,
+      "n_trials": 13676,
+      "within_band_slope": {
+        "max_rhat": 1.004,
+        "n_divergences": 0,
+        "color": {
+          "mean": 0.1114,
+          "lo": 0.0746,
+          "hi": 0.1491,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.743
+        },
+        "shape": {
+          "mean": 0.1284,
+          "lo": 0.0874,
+          "hi": 0.1677,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.856
+        },
+        "line": {
+          "mean": 0.1374,
+          "lo": 0.0947,
+          "hi": 0.1783,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.916
+        },
+        "pooled": {
+          "mean": 0.1257,
+          "lo": 0.1028,
+          "hi": 0.1492,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.838,
+          "frac_lo": 0.685,
+          "frac_hi": 0.995
+        }
+      },
+      "lam_to_payne": {
+        "n": 114,
+        "lam": {
+          "mean": 0.127,
+          "lo": 0.073,
+          "hi": 0.175,
+          "pdir": 1.0
+        },
+        "gain": {
+          "mean": -0.04,
+          "lo": -0.092,
+          "hi": 0.008,
+          "pdir": 0.943
+        }
+      },
+      "cv": {
+        "n_trials": 13676,
+        "folds": 5,
+        "elpd": {
+          "participant_map": -5784.2,
+          "participant_map_lambda": -4959.6,
+          "mor": -4896.9
+        },
+        "contrasts": {
+          "participant_map_lambda_minus_participant_map": {
+            "delta": 824.6,
+            "se": 38.0,
+            "z": 21.71,
+            "delta_per_1k_trials": 60.29,
+            "delta_div": 585.7,
+            "delta_nondiv": 238.9
+          },
+          "mor_minus_participant_map_lambda": {
+            "delta": 62.7,
+            "se": 11.5,
+            "z": 5.45,
+            "delta_per_1k_trials": 4.58,
+            "delta_div": 43.4,
+            "delta_nondiv": 19.3
+          }
+        }
+      },
+      "_seconds": 979.5,
+      "knowledge": {
+        "n_subj_dim": 342,
+        "corr_gain_K": {
+          "mean": 0.403,
+          "lo": 0.323,
+          "hi": 0.489,
+          "pdir": 1.0
+        },
+        "corr_lam_K": {
+          "mean": 0.005,
+          "lo": -0.068,
+          "hi": 0.08,
+          "pdir": 0.533
+        },
+        "corr_weight_dacc_double_centered_propagated": {
+          "mean": 0.301,
+          "lo": 0.26,
+          "hi": 0.345,
+          "pdir": 1.0
+        }
+      }
+    },
+    "rt_strict": {
+      "_description": "fast-RT rule 20% -> 10% of learning trials below p10",
+      "n_subjects": 87,
+      "n_trials": 10439,
+      "within_band_slope": {
+        "max_rhat": 1.0024,
+        "n_divergences": 0,
+        "color": {
+          "mean": 0.1118,
+          "lo": 0.0699,
+          "hi": 0.151,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.745
+        },
+        "shape": {
+          "mean": 0.1183,
+          "lo": 0.0744,
+          "hi": 0.1607,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.789
+        },
+        "line": {
+          "mean": 0.1317,
+          "lo": 0.0871,
+          "hi": 0.1793,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.878
+        },
+        "pooled": {
+          "mean": 0.1206,
+          "lo": 0.0945,
+          "hi": 0.1456,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.804,
+          "frac_lo": 0.63,
+          "frac_hi": 0.971
+        }
+      },
+      "lam_to_payne": {
+        "n": 87,
+        "lam": {
+          "mean": 0.144,
+          "lo": 0.087,
+          "hi": 0.198,
+          "pdir": 1.0
+        },
+        "gain": {
+          "mean": -0.06,
+          "lo": -0.117,
+          "hi": -0.005,
+          "pdir": 0.983
+        }
+      },
+      "cv": {
+        "n_trials": 10439,
+        "folds": 5,
+        "elpd": {
+          "participant_map": -4330.8,
+          "participant_map_lambda": -3745.9,
+          "mor": -3700.3
+        },
+        "contrasts": {
+          "participant_map_lambda_minus_participant_map": {
+            "delta": 584.9,
+            "se": 31.8,
+            "z": 18.37,
+            "delta_per_1k_trials": 56.03,
+            "delta_div": 400.4,
+            "delta_nondiv": 184.5
+          },
+          "mor_minus_participant_map_lambda": {
+            "delta": 45.6,
+            "se": 10.2,
+            "z": 4.46,
+            "delta_per_1k_trials": 4.37,
+            "delta_div": 33.2,
+            "delta_nondiv": 12.4
+          }
+        }
+      },
+      "_seconds": 740.2,
+      "knowledge": {
+        "n_subj_dim": 261,
+        "corr_gain_K": {
+          "mean": 0.405,
+          "lo": 0.306,
+          "hi": 0.501,
+          "pdir": 1.0
+        },
+        "corr_lam_K": {
+          "mean": -0.019,
+          "lo": -0.099,
+          "hi": 0.062,
+          "pdir": 0.683
+        },
+        "corr_weight_dacc_double_centered_propagated": {
+          "mean": 0.347,
+          "lo": 0.3,
+          "hi": 0.396,
+          "pdir": 1.0
+        }
+      }
+    },
+    "rt_loose": {
+      "_description": "fast-RT rule 20% -> 30% of learning trials below p10",
+      "n_subjects": 116,
+      "n_trials": 13916,
+      "within_band_slope": {
+        "max_rhat": 1.0066,
+        "n_divergences": 0,
+        "color": {
+          "mean": 0.1108,
+          "lo": 0.0729,
+          "hi": 0.1475,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.739
+        },
+        "shape": {
+          "mean": 0.1301,
+          "lo": 0.0916,
+          "hi": 0.1694,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.867
+        },
+        "line": {
+          "mean": 0.1347,
+          "lo": 0.0928,
+          "hi": 0.1757,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.898
+        },
+        "pooled": {
+          "mean": 0.1252,
+          "lo": 0.1023,
+          "hi": 0.1479,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.835,
+          "frac_lo": 0.682,
+          "frac_hi": 0.986
+        }
+      },
+      "lam_to_payne": {
+        "n": 116,
+        "lam": {
+          "mean": 0.132,
+          "lo": 0.084,
+          "hi": 0.183,
+          "pdir": 1.0
+        },
+        "gain": {
+          "mean": -0.044,
+          "lo": -0.094,
+          "hi": 0.005,
+          "pdir": 0.958
+        }
+      },
+      "cv": {
+        "n_trials": 13916,
+        "folds": 5,
+        "elpd": {
+          "participant_map": -5880.7,
+          "participant_map_lambda": -5125.9,
+          "mor": -5014.6
+        },
+        "contrasts": {
+          "participant_map_lambda_minus_participant_map": {
+            "delta": 754.8,
+            "se": 37.5,
+            "z": 20.15,
+            "delta_per_1k_trials": 54.24,
+            "delta_div": 559.7,
+            "delta_nondiv": 195.1
+          },
+          "mor_minus_participant_map_lambda": {
+            "delta": 111.3,
+            "se": 13.7,
+            "z": 8.15,
+            "delta_per_1k_trials": 8.0,
+            "delta_div": 58.7,
+            "delta_nondiv": 52.5
+          }
+        }
+      },
+      "_seconds": 1376.7,
+      "knowledge": {
+        "n_subj_dim": 348,
+        "corr_gain_K": {
+          "mean": 0.424,
+          "lo": 0.347,
+          "hi": 0.5,
+          "pdir": 1.0
+        },
+        "corr_lam_K": {
+          "mean": 0.004,
+          "lo": -0.066,
+          "hi": 0.083,
+          "pdir": 0.518
+        },
+        "corr_weight_dacc_double_centered_propagated": {
+          "mean": 0.317,
+          "lo": 0.274,
+          "hi": 0.36,
+          "pdir": 1.0
+        }
+      }
+    },
+    "no_rt_rule": {
+      "_description": "the unregistered fast-RT rule dropped entirely",
+      "n_subjects": 129,
+      "n_trials": 15476,
+      "within_band_slope": {
+        "max_rhat": 1.0064,
+        "n_divergences": 0,
+        "color": {
+          "mean": 0.1116,
+          "lo": 0.0772,
+          "hi": 0.147,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.744
+        },
+        "shape": {
+          "mean": 0.1269,
+          "lo": 0.0903,
+          "hi": 0.1644,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.846
+        },
+        "line": {
+          "mean": 0.1325,
+          "lo": 0.0931,
+          "hi": 0.1749,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.883
+        },
+        "pooled": {
+          "mean": 0.1237,
+          "lo": 0.1024,
+          "hi": 0.1468,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.825,
+          "frac_lo": 0.683,
+          "frac_hi": 0.979
+        }
+      },
+      "lam_to_payne": {
+        "n": 129,
+        "lam": {
+          "mean": 0.132,
+          "lo": 0.087,
+          "hi": 0.179,
+          "pdir": 1.0
+        },
+        "gain": {
+          "mean": -0.039,
+          "lo": -0.082,
+          "hi": 0.009,
+          "pdir": 0.952
+        }
+      },
+      "cv": {
+        "n_trials": 15476,
+        "folds": 5,
+        "elpd": {
+          "participant_map": -6639.1,
+          "participant_map_lambda": -5771.4,
+          "mor": -5641.3
+        },
+        "contrasts": {
+          "participant_map_lambda_minus_participant_map": {
+            "delta": 867.7,
+            "se": 40.6,
+            "z": 21.35,
+            "delta_per_1k_trials": 56.06,
+            "delta_div": 624.1,
+            "delta_nondiv": 243.6
+          },
+          "mor_minus_participant_map_lambda": {
+            "delta": 130.1,
+            "se": 15.0,
+            "z": 8.66,
+            "delta_per_1k_trials": 8.41,
+            "delta_div": 78.9,
+            "delta_nondiv": 51.2
+          }
+        }
+      },
+      "_seconds": 1586.7,
+      "knowledge": {
+        "n_subj_dim": 387,
+        "corr_gain_K": {
+          "mean": 0.438,
+          "lo": 0.362,
+          "hi": 0.511,
+          "pdir": 1.0
+        },
+        "corr_lam_K": {
+          "mean": -0.027,
+          "lo": -0.099,
+          "hi": 0.051,
+          "pdir": 0.767
+        },
+        "corr_weight_dacc_double_centered_propagated": {
+          "mean": 0.319,
+          "lo": 0.278,
+          "hi": 0.358,
+          "pdir": 1.0
+        }
+      }
+    },
+    "prereg_learn_final": {
+      "_description": "applied sample + the preregistered learning rule, scored on the final 10-trial prompt run (the prereg's wording)",
+      "n_subjects": 73,
+      "n_trials": 8758,
+      "within_band_slope": {
+        "max_rhat": 1.0023,
+        "n_divergences": 0,
+        "color": {
+          "mean": 0.1276,
+          "lo": 0.0843,
+          "hi": 0.1704,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.851
+        },
+        "shape": {
+          "mean": 0.1112,
+          "lo": 0.0647,
+          "hi": 0.1567,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.741
+        },
+        "line": {
+          "mean": 0.1352,
+          "lo": 0.0869,
+          "hi": 0.1857,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.901
+        },
+        "pooled": {
+          "mean": 0.1247,
+          "lo": 0.0957,
+          "hi": 0.1504,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.831,
+          "frac_lo": 0.638,
+          "frac_hi": 1.003
+        }
+      },
+      "lam_to_payne": {
+        "n": 73,
+        "lam": {
+          "mean": 0.14,
+          "lo": 0.083,
+          "hi": 0.193,
+          "pdir": 1.0
+        },
+        "gain": {
+          "mean": -0.033,
+          "lo": -0.089,
+          "hi": 0.023,
+          "pdir": 0.88
+        }
+      },
+      "cv": {
+        "n_trials": 8758,
+        "folds": 5,
+        "elpd": {
+          "participant_map": -3745.6,
+          "participant_map_lambda": -3074.6,
+          "mor": -3019.9
+        },
+        "contrasts": {
+          "participant_map_lambda_minus_participant_map": {
+            "delta": 671.0,
+            "se": 34.1,
+            "z": 19.7,
+            "delta_per_1k_trials": 76.61,
+            "delta_div": 499.4,
+            "delta_nondiv": 171.6
+          },
+          "mor_minus_participant_map_lambda": {
+            "delta": 54.7,
+            "se": 9.8,
+            "z": 5.59,
+            "delta_per_1k_trials": 6.24,
+            "delta_div": 39.5,
+            "delta_nondiv": 15.1
+          }
+        }
+      },
+      "_seconds": 612.8,
+      "knowledge": {
+        "n_subj_dim": 219,
+        "corr_gain_K": {
+          "mean": 0.437,
+          "lo": 0.326,
+          "hi": 0.546,
+          "pdir": 1.0
+        },
+        "corr_lam_K": {
+          "mean": 0.201,
+          "lo": 0.128,
+          "hi": 0.275,
+          "pdir": 1.0
+        },
+        "corr_weight_dacc_double_centered_propagated": {
+          "mean": 0.231,
+          "lo": 0.17,
+          "hi": 0.296,
+          "pdir": 1.0
+        }
+      }
+    },
+    "prereg_learn_whole": {
+      "_description": "applied sample + the preregistered learning rule, scored on all ~39 learning trials (what cactus_paper.analyses.prereg does)",
+      "n_subjects": 68,
+      "n_trials": 8159,
+      "within_band_slope": {
+        "max_rhat": 1.004,
+        "n_divergences": 0,
+        "color": {
+          "mean": 0.1294,
+          "lo": 0.0842,
+          "hi": 0.1744,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.863
+        },
+        "shape": {
+          "mean": 0.1274,
+          "lo": 0.0782,
+          "hi": 0.1754,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.849
+        },
+        "line": {
+          "mean": 0.1339,
+          "lo": 0.0844,
+          "hi": 0.1823,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.893
+        },
+        "pooled": {
+          "mean": 0.1302,
+          "lo": 0.1031,
+          "hi": 0.159,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.868,
+          "frac_lo": 0.687,
+          "frac_hi": 1.06
+        }
+      },
+      "lam_to_payne": {
+        "n": 68,
+        "lam": {
+          "mean": 0.154,
+          "lo": 0.092,
+          "hi": 0.217,
+          "pdir": 1.0
+        },
+        "gain": {
+          "mean": -0.044,
+          "lo": -0.106,
+          "hi": 0.018,
+          "pdir": 0.919
+        }
+      },
+      "cv": {
+        "n_trials": 8159,
+        "folds": 5,
+        "elpd": {
+          "participant_map": -3515.4,
+          "participant_map_lambda": -2810.3,
+          "mor": -2761.1
+        },
+        "contrasts": {
+          "participant_map_lambda_minus_participant_map": {
+            "delta": 705.1,
+            "se": 34.9,
+            "z": 20.18,
+            "delta_per_1k_trials": 86.42,
+            "delta_div": 521.4,
+            "delta_nondiv": 183.7
+          },
+          "mor_minus_participant_map_lambda": {
+            "delta": 49.2,
+            "se": 9.7,
+            "z": 5.05,
+            "delta_per_1k_trials": 6.03,
+            "delta_div": 35.3,
+            "delta_nondiv": 13.9
+          }
+        }
+      },
+      "_seconds": 1030.6,
+      "knowledge": {
+        "n_subj_dim": 204,
+        "corr_gain_K": {
+          "mean": 0.416,
+          "lo": 0.287,
+          "hi": 0.537,
+          "pdir": 1.0
+        },
+        "corr_lam_K": {
+          "mean": 0.261,
+          "lo": 0.191,
+          "hi": 0.324,
+          "pdir": 1.0
+        },
+        "corr_weight_dacc_double_centered_propagated": {
+          "mean": 0.142,
+          "lo": 0.077,
+          "hi": 0.205,
+          "pdir": 1.0
+        }
+      }
+    },
+    "prereg_cascade": {
+      "_description": "the preregistered cascade in full, replacing the applied one",
+      "n_subjects": 80,
+      "n_trials": 9599,
+      "within_band_slope": {
+        "max_rhat": 1.0036,
+        "n_divergences": 0,
+        "color": {
+          "mean": 0.1214,
+          "lo": 0.0801,
+          "hi": 0.1645,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.809
+        },
+        "shape": {
+          "mean": 0.127,
+          "lo": 0.0809,
+          "hi": 0.1715,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.847
+        },
+        "line": {
+          "mean": 0.1356,
+          "lo": 0.0888,
+          "hi": 0.1798,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.904
+        },
+        "pooled": {
+          "mean": 0.128,
+          "lo": 0.1022,
+          "hi": 0.1534,
+          "pdir": 1.0,
+          "frac_of_full_ramp": 0.853,
+          "frac_lo": 0.681,
+          "frac_hi": 1.023
+        }
+      },
+      "lam_to_payne": {
+        "n": 80,
+        "lam": {
+          "mean": 0.149,
+          "lo": 0.087,
+          "hi": 0.205,
+          "pdir": 1.0
+        },
+        "gain": {
+          "mean": -0.049,
+          "lo": -0.11,
+          "hi": 0.007,
+          "pdir": 0.947
+        }
+      },
+      "cv": {
+        "n_trials": 9599,
+        "folds": 5,
+        "elpd": {
+          "participant_map": -4210.3,
+          "participant_map_lambda": -3405.3,
+          "mor": -3351.6
+        },
+        "contrasts": {
+          "participant_map_lambda_minus_participant_map": {
+            "delta": 805.0,
+            "se": 37.5,
+            "z": 21.46,
+            "delta_per_1k_trials": 83.86,
+            "delta_div": 589.0,
+            "delta_nondiv": 216.0
+          },
+          "mor_minus_participant_map_lambda": {
+            "delta": 53.7,
+            "se": 10.3,
+            "z": 5.19,
+            "delta_per_1k_trials": 5.6,
+            "delta_div": 37.3,
+            "delta_nondiv": 16.4
+          }
+        }
+      },
+      "_seconds": 4328.8,
+      "knowledge": {
+        "n_subj_dim": 240,
+        "corr_gain_K": {
+          "mean": 0.476,
+          "lo": 0.372,
+          "hi": 0.578,
+          "pdir": 1.0
+        },
+        "corr_lam_K": {
+          "mean": 0.214,
+          "lo": 0.152,
+          "hi": 0.28,
+          "pdir": 1.0
+        },
+        "corr_weight_dacc_double_centered_propagated": {
+          "mean": 0.142,
+          "lo": 0.08,
+          "hi": 0.205,
+          "pdir": 1.0
+        }
+      }
+    }
+  }
+}

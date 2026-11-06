@@ -1,0 +1,27 @@
+{
+  "_tau": 0.05,
+  "_full_ramp_benchmark": 0.15,
+  "mor": {
+    "max_rhat": 1.0021,
+    "n_divergences": 0,
+    "converged": true,
+    "color": {
+      "s": 0.113,
+      "lo": 0.0743,
+      "hi": 0.1505,
+      "frac_of_full_ramp": 0.753
+    },
+    "shape": {
+      "s": 0.1224,
+      "lo": 0.0845,
+      "hi": 0.1618,
+      "frac_of_full_ramp": 0.816
+    },
+    "line": {
+      "s": 0.1306,
+      "lo": 0.0879,
+      "hi": 0.173,
+      "frac_of_full_ramp": 0.871
+    }
+  }
+}

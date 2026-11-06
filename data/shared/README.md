@@ -13,4 +13,7 @@ PID / study / session IDs, SONA IDs, IP, user agent, referer URL, browser / OS, 
 demographics and medical-history responses, free-text debrief answers (the input-device answer
 is kept), and the Prolific completion code. `recorded_at` is reduced to the date.
 
+To run the analyses on a fresh clone, first `pixi run unpack-data`: it writes these files to
+`data/raw/` and `data/processed/`, where the code reads them (existing files are never overwritten).
+
 pandas reads the `.csv.gz` files directly: `pd.read_csv("data/shared/processed/exp2/choice_data.csv.gz", index_col=0)`.

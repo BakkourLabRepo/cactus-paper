@@ -1,0 +1,86 @@
+{
+  "_formulas": [
+    "payne ~ lam + gain + conc",
+    "depth ~ lam + gain + conc"
+  ],
+  "_note": "the 3-predictor joint models PLOTTED in fig_ms5_crossstream panel B; the 2-predictor fig5_style / fig5_amount blocks in stats.json are different models",
+  "_conc_metric": "gini of |w_sd|",
+  "style": {
+    "lam": {
+      "mean": 0.129,
+      "lo": 0.0742,
+      "hi": 0.1798,
+      "pdir": 1.0
+    },
+    "gain": {
+      "mean": -0.0303,
+      "lo": -0.0964,
+      "hi": 0.0311,
+      "pdir": 0.824
+    },
+    "conc": {
+      "mean": 0.0593,
+      "lo": -0.0031,
+      "hi": 0.1215,
+      "pdir": 0.969
+    },
+    "lam_minus_conc": {
+      "mean": 0.0689,
+      "lo": -0.0162,
+      "hi": 0.1589,
+      "pdir": 0.934
+    },
+    "lam_minus_gain": {
+      "mean": 0.0924,
+      "lo": 0.0306,
+      "hi": 0.1537,
+      "pdir": 0.997
+    },
+    "contrast": {
+      "mean": 0.0924,
+      "lo": 0.0306,
+      "hi": 0.1537,
+      "pdir": 0.997,
+      "_what": "|lam| - |gain|"
+    }
+  },
+  "amount": {
+    "lam": {
+      "mean": 0.0784,
+      "lo": -0.104,
+      "hi": 0.259,
+      "pdir": 0.805
+    },
+    "gain": {
+      "mean": 0.2075,
+      "lo": -0.0247,
+      "hi": 0.4199,
+      "pdir": 0.965
+    },
+    "conc": {
+      "mean": -0.3106,
+      "lo": -0.5364,
+      "hi": -0.1033,
+      "pdir": 0.997
+    },
+    "conc_minus_lam": {
+      "mean": 0.2116,
+      "lo": -0.0173,
+      "hi": 0.452,
+      "pdir": 0.959
+    },
+    "conc_minus_gain": {
+      "mean": 0.0999,
+      "lo": -0.275,
+      "hi": 0.4648,
+      "pdir": 0.7
+    },
+    "contrast": {
+      "mean": 0.0999,
+      "lo": -0.275,
+      "hi": 0.4648,
+      "pdir": 0.7,
+      "_what": "|conc| - |gain|"
+    }
+  }
+}

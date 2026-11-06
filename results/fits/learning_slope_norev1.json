@@ -1,0 +1,80 @@
+{
+  "_what": "learning-task psychometric correct ~ z(category distance) + (z(distance) | subject:dimension); slopes in logit per SD of category distance",
+  "sd_distance_categories": 1.001,
+  "sd_distance_points": 25.0,
+  "n_trials": 11698,
+  "n_cells": 327,
+  "group_intercept": {
+    "mean": 1.6092,
+    "lo": 1.4712,
+    "hi": 1.7349,
+    "pdir": 1.0
+  },
+  "group_slope": {
+    "mean": 0.197,
+    "lo": 0.1442,
+    "hi": 0.2533,
+    "pdir": 1.0
+  },
+  "sd_intercept": {
+    "mean": 1.0663,
+    "lo": 0.9476,
+    "hi": 1.1721,
+    "pdir": 1.0
+  },
+  "sd_slope": {
+    "mean": 0.1937,
+    "lo": 0.0764,
+    "hi": 0.288,
+    "pdir": 1.0
+  },
+  "by_dim": {
+    "color": {
+      "mean": 0.2099,
+      "lo": 0.1544,
+      "hi": 0.274,
+      "pdir": 1.0
+    },
+    "shape": {
+      "mean": 0.1858,
+      "lo": 0.1308,
+      "hi": 0.2508,
+      "pdir": 1.0
+    },
+    "line": {
+      "mean": 0.1966,
+      "lo": 0.1399,
+      "hi": 0.2529,
+      "pdir": 1.0
+    }
+  },
+  "acc_by_distance": {
+    "1": 0.76,
+    "2": 0.798,
+    "3": 0.82,
+    "4": 0.83
+  },
+  "n_cells_slope_le0": 5,
+  "n_subj_slope_le0": 0,
+  "corr_slope_K": {
+    "mean": 0.134,
+    "lo": -0.0488,
+    "hi": 0.3033,
+    "pdir": 0.927
+  },
+  "r_distance_vs_angle": 0.9713,
+  "rerun_vs_saved_r": 0.942,
+  "split_half": {
+    "_what": "odd vs even trial_per_dim fits; participant = mean over the three dimensions; spearman_brown = full-length reliability",
+    "slope_r": 0.057,
+    "slope_spearman_brown": 0.109,
+    "slope_cell_r": 0.042,
+    "level_r": 0.781,
+    "level_spearman_brown": 0.877,
+    "tertile_agreement_by_dim": {
+      "color": 0.284,
+      "shape": 0.376,
+      "line": 0.422
+    }
+  }
+}

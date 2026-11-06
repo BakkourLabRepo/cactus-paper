@@ -1,0 +1,103 @@
+{
+  "n_trials": 13076,
+  "folds": 5,
+  "seed": 2026,
+  "warmup": 600,
+  "samples": 600,
+  "chains": 4,
+  "elpd": {
+    "weighted_linear": -4957.882274627686,
+    "group_map_lambda": -4901.534821271896,
+    "taught_spacing_lambda": -4943.028506755829,
+    "participant_map": -5499.501115322113,
+    "group_map_noise": -4965.90615773201,
+    "participant_map_lambda": -4758.535270690918,
+    "mor": -4665.66522026062
+  },
+  "contrasts": {
+    "mor_minus_participant_map_lambda": {
+      "delta": 92.87005043029785,
+      "se": 13.505546848458938,
+      "z": 6.876437620213421,
+      "delta_div": 59.5781569480896,
+      "delta_nondiv": 33.29189348220825
+    },
+    "participant_map_minus_weighted_linear": {
+      "delta": -541.6188406944275,
+      "se": 42.39624502941661,
+      "z": -12.775160637896718,
+      "delta_div": -386.0426959991455,
+      "delta_nondiv": -155.57614469528198
+    },
+    "group_map_lambda_minus_participant_map": {
+      "delta": 597.9662940502167,
+      "se": 41.27230797208441,
+      "z": 14.4883173108387,
+      "delta_div": 429.6532611846924,
+      "delta_nondiv": 168.3130328655243
+    },
+    "group_map_lambda_minus_taught_spacing_lambda": {
+      "delta": 41.493685483932495,
+      "se": 11.592215418515616,
+      "z": 3.5794439618208687,
+      "delta_div": 30.510043382644653,
+      "delta_nondiv": 10.983642101287842
+    },
+    "group_map_lambda_minus_group_map_noise": {
+      "delta": 64.37133646011353,
+      "se": 11.731190392714977,
+      "z": 5.487195613165385,
+      "delta_div": 56.72910499572754,
+      "delta_nondiv": 7.642231464385986
+    },
+    "group_map_lambda_minus_weighted_linear": {
+      "delta": 56.347453355789185,
+      "se": 13.94186662907491,
+      "z": 4.041600372096518,
+      "delta_div": 43.610565185546875,
+      "delta_nondiv": 12.73688817024231
+    },
+    "participant_map_lambda_minus_participant_map": {
+      "delta": 740.9658446311951,
+      "se": 36.38269813869329,
+      "z": 20.365884954617258,
+      "delta_div": 536.733208656311,
+      "delta_nondiv": 204.23263597488403
+    },
+    "participant_map_lambda_minus_group_map_lambda": {
+      "delta": 142.9995505809784,
+      "se": 20.513287725032576,
+      "z": 6.971069313597867,
+      "delta_div": 107.07994747161865,
+      "delta_nondiv": 35.91960310935974
+    },
+    "participant_map_lambda_minus_weighted_linear": {
+      "delta": 199.34700393676758,
+      "se": 24.838067324506827,
+      "z": 8.02586615666667,
+      "delta_div": 150.69051265716553,
+      "delta_nondiv": 48.65649127960205
+    },
+    "taught_spacing_lambda_minus_weighted_linear": {
+      "delta": 14.85376787185669,
+      "se": 7.459814623805448,
+      "z": 1.9911711779614425,
+      "delta_div": 13.100521802902222,
+      "delta_nondiv": 1.7532460689544678
+    },
+    "group_map_noise_minus_participant_map": {
+      "delta": 533.5949575901031,
+      "se": 42.885043537305044,
+      "z": 12.442448778813459,
+      "delta_div": 372.92415618896484,
+      "delta_nondiv": 160.6708014011383
+    },
+    "group_map_noise_minus_weighted_linear": {
+      "delta": -8.02388310432434,
+      "se": 17.843976108271846,
+      "z": -0.449669011863603,
+      "delta_div": -13.118539810180664,
+      "delta_nondiv": 5.094656705856323
+    }
+  }
+}

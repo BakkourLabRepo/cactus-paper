@@ -1,0 +1,247 @@
+{
+  "_what": "the four preregistered models, fit as specified (lme4 ML, Wald CIs)",
+  "_sample": "the paper's analyzed sample",
+  "_exclusions": {
+    "n_raw": 160,
+    "prereg_cascade": {
+      "test_account": 1,
+      "incomplete": 1,
+      "learning_failure_any_dim_lt_60": 63,
+      "_final_block": "the last prompt run (~10 trials) of each dimension",
+      "_median_trials_scored": 39,
+      "mouse_noncompliance": 18,
+      "n_prereg": 78
+    },
+    "applied_cascade": {
+      "test_account": 1,
+      "mouse_quality": 30,
+      "fast_learning_rt": 20,
+      "rt_threshold_ms": 627.0,
+      "n_analyzed": 109
+    },
+    "overlap": {
+      "both": 66,
+      "prereg_only": 12,
+      "analyzed_only": 43,
+      "prereg_only_all_from_fast_rt": 12
+    },
+    "_note": "of the analyzed participants, 43 fail the preregistered learning rule; only 3 of those are below .60 on all three dimensions, so the rule mostly removes people with one weak dimension -- the within-person unevenness the paper is about"
+  },
+  "_n_subjects": 109,
+  "_n_divergent_trials": 6410,
+  "_note": "negative binomial was preregistered with a Poisson fallback if overdispersion is not significant; it is not, so Poisson is reported (estimates identical)",
+  "_dispersion": {
+    "H2": {
+      "nb_vs_poisson_lr": -0.028,
+      "nb_theta": 53418.5,
+      "poisson_pearson_dispersion": 0.639
+    },
+    "H3b": {
+      "nb_vs_poisson_lr": -0.028,
+      "nb_theta": 53299.9,
+      "poisson_pearson_dispersion": 0.64
+    }
+  },
+  "_random_effects": "preregistered maximal structure; any SINGULAR fit is refit with random intercepts only (the prereg's 'simplify by removing random slopes'), and the maximal fit is kept under `maximal_singular` as a sensitivity result",
+  "H1": {
+    "focal": "z_within_dim",
+    "predicted_direction": "+",
+    "supported": false,
+    "random_effects": "as preregistered",
+    "terms": {
+      "(Intercept)": {
+        "estimate": -0.0884,
+        "se": 0.0964,
+        "lo": -0.2774,
+        "hi": 0.1006,
+        "p": 0.35925
+      },
+      "z_within_dim": {
+        "estimate": 0.1084,
+        "se": 0.0584,
+        "lo": -0.0061,
+        "hi": 0.223,
+        "p": 0.06363
+      },
+      "z_total_transitions": {
+        "estimate": -0.0678,
+        "se": 0.0527,
+        "lo": -0.171,
+        "hi": 0.0355,
+        "p": 0.19838
+      },
+      "z_discriminability_critical": {
+        "estimate": -0.0472,
+        "se": 0.0274,
+        "lo": -0.1009,
+        "hi": 0.0065,
+        "p": 0.08466
+      }
+    }
+  },
+  "H3a": {
+    "focal": "z_category_knowledge",
+    "predicted_direction": "+",
+    "supported": true,
+    "random_effects": "as preregistered",
+    "terms": {
+      "(Intercept)": {
+        "estimate": 0.1085,
+        "se": 0.0941,
+        "lo": -0.0759,
+        "hi": 0.293,
+        "p": 0.24885
+      },
+      "z_category_knowledge": {
+        "estimate": 0.2052,
+        "se": 0.094,
+        "lo": 0.0209,
+        "hi": 0.3895,
+        "p": 0.02907
+      },
+      "z_discriminability_critical": {
+        "estimate": 0.0493,
+        "se": 0.0272,
+        "lo": -0.0041,
+        "hi": 0.1027,
+        "p": 0.07045
+      }
+    }
+  },
+  "H2": {
+    "focal": "z_discriminability_critical",
+    "predicted_direction": "-",
+    "supported": true,
+    "random_effects": "intercepts (stepped down: maximal fit singular)",
+    "terms": {
+      "(Intercept)": {
+        "estimate": -0.1087,
+        "se": 0.0358,
+        "lo": -0.1789,
+        "hi": -0.0385,
+        "p": 0.0024
+      },
+      "z_total_transitions": {
+        "estimate": 0.3504,
+        "se": 0.0093,
+        "lo": 0.3321,
+        "hi": 0.3686,
+        "p": 0.0
+      },
+      "z_discriminability_critical": {
+        "estimate": -0.0358,
+        "se": 0.0122,
+        "lo": -0.0596,
+        "hi": -0.0119,
+        "p": 0.00328
+      }
+    },
+    "maximal_singular": {
+      "terms": {
+        "(Intercept)": {
+          "estimate": -0.1081,
+          "se": 0.0355,
+          "lo": -0.1776,
+          "hi": -0.0386,
+          "p": 0.0023
+        },
+        "z_total_transitions": {
+          "estimate": 0.3516,
+          "se": 0.0093,
+          "lo": 0.3333,
+          "hi": 0.3699,
+          "p": 0.0
+        },
+        "z_discriminability_critical": {
+          "estimate": -0.0257,
+          "se": 0.0136,
+          "lo": -0.0523,
+          "hi": 0.0009,
+          "p": 0.05867
+        }
+      }
+    }
+  },
+  "H3b": {
+    "focal": "z_discriminability_critical:z_category_knowledge",
+    "predicted_direction": "+",
+    "supported": false,
+    "random_effects": "intercepts (stepped down: maximal fit singular)",
+    "terms": {
+      "(Intercept)": {
+        "estimate": -0.1081,
+        "se": 0.0336,
+        "lo": -0.1739,
+        "hi": -0.0423,
+        "p": 0.00129
+      },
+      "z_total_transitions": {
+        "estimate": 0.349,
+        "se": 0.0093,
+        "lo": 0.3308,
+        "hi": 0.3672,
+        "p": 0.0
+      },
+      "z_discriminability_critical": {
+        "estimate": -0.036,
+        "se": 0.0123,
+        "lo": -0.0602,
+        "hi": -0.0118,
+        "p": 0.00358
+      },
+      "z_category_knowledge": {
+        "estimate": 0.1318,
+        "se": 0.0336,
+        "lo": 0.066,
+        "hi": 0.1976,
+        "p": 9e-05
+      },
+      "z_discriminability_critical:z_category_knowledge": {
+        "estimate": 0.0012,
+        "se": 0.0129,
+        "lo": -0.0241,
+        "hi": 0.0265,
+        "p": 0.92591
+      }
+    },
+    "maximal_singular": {
+      "terms": {
+        "(Intercept)": {
+          "estimate": -0.1075,
+          "se": 0.0333,
+          "lo": -0.1728,
+          "hi": -0.0423,
+          "p": 0.00123
+        },
+        "z_total_transitions": {
+          "estimate": 0.3503,
+          "se": 0.0093,
+          "lo": 0.3321,
+          "hi": 0.3686,
+          "p": 0.0
+        },
+        "z_discriminability_critical": {
+          "estimate": -0.0263,
+          "se": 0.0136,
+          "lo": -0.053,
+          "hi": 0.0003,
+          "p": 0.05275
+        },
+        "z_category_knowledge": {
+          "estimate": 0.1299,
+          "se": 0.0333,
+          "lo": 0.0646,
+          "hi": 0.1951,
+          "p": 0.0001
+        },
+        "z_discriminability_critical:z_category_knowledge": {
+          "estimate": -0.0016,
+          "se": 0.0132,
+          "lo": -0.0275,
+          "hi": 0.0243,
+          "p": 0.9037
+        }
+      }
+    }
+  }
+}

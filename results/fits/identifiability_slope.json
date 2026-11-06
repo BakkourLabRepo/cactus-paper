@@ -1,0 +1,72 @@
+{
+  "n_trials": 13076,
+  "reps": 3,
+  "folds": 5,
+  "observed": {
+    "mor_minus_participant_map_lambda": 92.87005043029785
+  },
+  "by_generator": {
+    "participant_map_lambda": {
+      "reps": [
+        {
+          "mor_minus_participant_map_lambda": {
+            "delta": -10.82394814491272,
+            "se": 3.770161162856094
+          }
+        },
+        {
+          "mor_minus_participant_map_lambda": {
+            "delta": -5.632450342178345,
+            "se": 3.4163210359170137
+          }
+        },
+        {
+          "mor_minus_participant_map_lambda": {
+            "delta": -9.518740177154541,
+            "se": 3.866711467595558
+          }
+        }
+      ],
+      "mor_minus_participant_map_lambda": {
+        "mean": -8.658379554748535,
+        "sd": 2.205006070949934,
+        "reps": [
+          -10.82394814491272,
+          -5.632450342178345,
+          -9.518740177154541
+        ]
+      }
+    },
+    "mor": {
+      "reps": [
+        {
+          "mor_minus_participant_map_lambda": {
+            "delta": 34.390129804611206,
+            "se": 9.22575727058633
+          }
+        },
+        {
+          "mor_minus_participant_map_lambda": {
+            "delta": 53.316277503967285,
+            "se": 11.161618462859632
+          }
+        },
+        {
+          "mor_minus_participant_map_lambda": {
+            "delta": 95.5762209892273,
+            "se": 13.887909691210565
+          }
+        }
+      ],
+      "mor_minus_participant_map_lambda": {
+        "mean": 61.09420943260193,
+        "sd": 25.577419825931027,
+        "reps": [
+          34.390129804611206,
+          53.316277503967285,
+          95.5762209892273
+        ]
+      }
+    }
+  }
+}

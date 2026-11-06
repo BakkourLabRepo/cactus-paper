@@ -1,0 +1,28 @@
+{
+  "raw_angle_by_direction": {
+    "ascending_group": {
+      "mean": 0.106,
+      "lo": 0.0538,
+      "hi": 0.1557,
+      "pdir": 1.0
+    },
+    "descending_group": {
+      "mean": -0.0697,
+      "lo": -0.1193,
+      "hi": -0.0192,
+      "pdir": 0.996
+    },
+    "signs_opposite": true,
+    "verdict": "VALUE-LOCKED \u2014 opposite raw-angle signs, so the pooled value-referenced effect is not a perceptual/motor angle bias"
+  },
+  "residualized_angular_distance": {
+    "_n": 12675,
+    "collinearity_after_residualizing": -0.0,
+    "angular_distance_within_value_level": {
+      "mean": 0.0533,
+      "lo": 0.0059,
+      "hi": 0.0996,
+      "pdir": 0.987
+    }
+  }
+}

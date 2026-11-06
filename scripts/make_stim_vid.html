@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsPsych Trial Visualizer</title>
+    <!-- We need the d3-color library for the LAB to RGB color conversion, just like in your experiment -->
+     <!-- Currently this is still broken but I think it gets most of the way there -->
+    <script src="https://d3js.org/d3-color.v3.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            max-width: 1600px;
+        }
+
+        .controls-panel {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            min-width: 400px;
+            max-width: 500px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #111;
+        }
+        
+        h2 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button, input[type="file"]::file-selector-button {
+            flex-grow: 1;
+            padding: 12px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        
+        #renderBtn {
+            background-color: #007bff;
+            color: white;
+        }
+        #renderBtn:hover { background-color: #0056b3; }
+        #renderBtn:active { transform: scale(0.98); }
+
+        #playPauseBtn {
+            background-color: #28a745;
+            color: white;
+        }
+        #playPauseBtn:hover { background-color: #1e7e34; }
+        #playPauseBtn:active { transform: scale(0.98); }
+        #playPauseBtn.paused {
+            background-color: #ffc107;
+            color: #333;
+        }
+         #playPauseBtn.paused:hover { background-color: #e0a800; }
+
+        input[type="file"] {
+            margin-bottom: 15px;
+        }
+
+        .slider-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+
+        .visualization-panel {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #animation-container {
+            position: relative;
+            width: 800px; /* Match canvas size from experiment */
+            height: 860px; /* Match canvas size from experiment */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        canvas {
+            display: block;
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        /* This is the spotlight effect, copied directly from your experiment-setup.js */
+        #spotlight {
+            position: absolute; /* Changed to absolute to stay within the container */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px) grayscale(100%);
+            -webkit-backdrop-filter: blur(10px) grayscale(100%);
+            mask: radial-gradient(circle at var(--x) var(--y), transparent 120px, black 140px);
+            -webkit-mask: radial-gradient(circle at var(--x) var(--y), transparent 120px, black 140px);
+            z-index: 9999;
+            pointer-events: none;
+            cursor: none;
+            border-radius: 8px; /* Match container */
+        }
+        
+        #timeline {
+            width: 100%;
+            height: 10px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #ddd;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .2s;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #timeline::-webkit-slider-thumb {
+             -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #007bff;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        #timeline::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #007bff;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        
+        .timeline-info {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="controls-panel">
+            <h2>Trial Replay Controls</h2>
+            
+            <label for="json-file">Load Trial JSON File:</label>
+            <input type="file" id="json-file" accept=".json,application/json">
+
+            <label for="json-input">Or Paste Trial JSON Data:</label>
+            <textarea id="json-input" placeholder="Paste the JSON data for a single trial here..."></textarea>
+            
+            <div class="button-group">
+                <button id="renderBtn">Render Animation</button>
+                <button id="playPauseBtn" disabled>Play</button>
+            </div>
+            
+            
+             <div class="slider-group" style="margin-top: 20px;">
+                <label for="timeline">Timeline</label>
+                <input type="range" id="timeline" min="0" max="100" value="0" step="0.1" disabled>
+                <div class="timeline-info">
+                    <span id="current-time">0.00s</span>
+                    <span id="total-time">0.00s</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="visualization-panel">
+            <h1>Trial Visualization</h1>
+            <div id="animation-container">
+                <canvas id="stimulus-canvas" width="800" height="860"></canvas>
+                <div id="spotlight" style="--x: 400px; --y: 430px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DOM ELEMENT REFERENCES ---
+        const canvas = document.getElementById('stimulus-canvas');
+        const ctx = canvas.getContext('2d');
+        const jsonInput = document.getElementById('json-input');
+        const fileInput = document.getElementById('json-file');
+        const renderBtn = document.getElementById('renderBtn');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const spotlight = document.getElementById('spotlight');
+        const timelineSlider = document.getElementById('timeline');
+        const currentTimeDisplay = document.getElementById('current-time');
+        const totalTimeDisplay = document.getElementById('total-time');
+
+        // --- ANIMATION STATE ---
+        let animationFrameId = null;
+        let mouseData = [];
+        let trialStimuli = null;
+        let isPlaying = false;
+        let animationStartTime = 0; // The performance.now() time when animation started/resumed
+        let elapsedTimeAtPause = 0; // The elapsed time within the trial's timeline
+
+        // --- DRAWING LOGIC (Ported from stimulus-helpers.js) ---
+        // let shapeImages = [];
+        function makeImagePath(shapeNum) {
+        // leftpad shapeNum to 3 digits
+        shapeNum = shapeNum.toString().padStart(3, "0");
+        let imagePath = `../experiment_code/exp1/public/assets/transparent_VCSshapes/VCS_${shapeNum}_transparent_cv2.png`;
+        return imagePath;
+        }
+        // This is the "setter" function we will export.
+        // It allows other modules to set the value of shapeImages.
+        // const setShapeImages = (images) => {
+        // shapeImages = images;
+        // };
+
+        const preloadImages = () => {
+        const localShapeImages = new Array(360);
+        for (let i = 1; i < 361; i++) {
+            const image = new Image();
+            image.src = makeImagePath(i);
+            localShapeImages[i - 1] = image;
+        }
+        return localShapeImages;
+        };
+        let shapeImages = preloadImages()
+        // Helper for LAB to RGB color conversion
+        const labToRgbAtAngle = (angleDegrees, L, aCenter, bCenter, radius) => {
+            const angleRadians = angleDegrees * (Math.PI / 180);
+            const a = aCenter + radius * Math.cos(angleRadians);
+            const b = bCenter + radius * Math.sin(angleRadians);
+            const labColor = d3.lab(L, a, b);
+            const rgbColor = d3.rgb(labColor);
+            return {
+                r: Math.max(0, Math.min(255, Math.round(rgbColor.r))),
+                g: Math.max(0, Math.min(255, Math.round(rgbColor.g))),
+                b: Math.max(0, Math.min(255, Math.round(rgbColor.b))),
+            };
+        };
+
+        // Draw a colored circle
+        const drawCircle = (ctx, centerX, centerY, angle, radius) => {
+            ctx.save();
+            const L = 50, aCenter = 20, bCenter = 20, abRadius = 60;
+            let color;
+            if (Number.isInteger(angle)) {
+                color = labToRgbAtAngle(angle, L, aCenter, bCenter, abRadius);
+            } else {
+                color = { r: 200, g: 200, b: 200 }; // Placeholder for non-integer angles
+            }
+            ctx.fillStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+        };
+
+        // Draw a line stimulus
+        const drawLine = (ctx, centerX, centerY, angle, radius) => {
+            ctx.save();
+            ctx.fillStyle = `rgb(255, 255, 255)`; // White background circle
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+            const angle_in_radians = ((angle + 90) * Math.PI) / 180;
+            const line_length = radius * 0.8;
+            const lineEndX = centerX + line_length * Math.cos(angle_in_radians);
+            const lineEndY = centerY + line_length * Math.sin(angle_in_radians);
+
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(lineEndX, lineEndY);
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            ctx.restore();
+        };
+        
+        // Draw a shape stimulus 
+        const drawShape = (ctx, centerX, centerY, angle, radius, feedback) => {
+        let img = shapeImages[angle];
+        ctx.drawImage(
+            img,
+            centerX - radius * 1.5,
+            centerY - radius * 1.5,
+            radius * 3,
+            radius * 3,
+        );
+        if (Number.isInteger(feedback)) {
+            drawFeedback(ctx, feedback, centerX, centerY, radius);
+        } 
+        };
+
+        // Generic dispatcher to draw any stimulus type
+        const drawTrialStim = (dim, ctx, centerX, centerY, radius, angle) => {
+            if (dim == "color") {
+                return drawCircle(ctx, centerX, centerY, angle, radius);
+            } else if (dim == "shape") {
+                return drawShape(ctx, centerX, centerY, angle, radius);
+            } else if (dim == "line") {
+                // The original code added 90 for lines, but let's assume the angle data is correct as-is.
+                return drawLine(ctx, centerX, centerY, angle, radius);
+            }
+        };
+
+        // Draws a full column of 3 stimuli
+        const drawChoiceCol = (ctx, startX, sideData) => {
+            const itemSize = canvas.height * 0.12;
+            const margin = canvas.height * 0.2;
+            const startY = canvas.height * 0.15;
+            
+            const topY = startY;
+            drawTrialStim(sideData.top.dim, ctx, startX, topY, itemSize, sideData.top.angle);
+
+            const midY = startY + itemSize + margin;
+            drawTrialStim(sideData.mid.dim, ctx, startX, midY, itemSize, sideData.mid.angle);
+
+            const botY = startY + (itemSize + margin) * 2;
+            drawTrialStim(sideData.bot.dim, ctx, startX, botY, itemSize, sideData.bot.angle);
+        };
+        
+        // --- DATA PARSING ---
+        const parseTrialData = (data) => {
+            if (!data.mouse_tracking_data || !data.choice_trial_left_top_dim) {
+                alert("Invalid jsPsych data. Make sure it's a single trial object containing 'mouse_tracking_data' and 'choice_trial_...' properties.");
+                return null;
+            }
+            console.log(data.mouse_tracking_data)
+            console.log(typeof data.mouse_tracking_data)
+            let trackingData = [];
+            if (Array.isArray(data.mouse_tracking_data)) {
+                 // Data is already in the correct array format
+                trackingData = data.mouse_tracking_data;
+            } else if (typeof data.mouse_tracking_data === 'string' && data.mouse_tracking_data !== null) {
+                // Handle cases where the data is an object containing a stringified JSON array
+                // e.g., {"0": "[{...}]"} as seen in your example
+                try {
+                    trackingData = JSON.parse(data.mouse_tracking_data);
+                } catch (e) {
+                    console.error("Error parsing mouse_tracking_data string:", e);
+                    alert('Failed to parse the mouse tracking data string. Please check the console for details.');
+                    return null;
+                }
+            }
+            
+            if (!Array.isArray(trackingData)) {
+                 alert('Could not extract a valid mouse tracking array from the provided data.');
+                 return null;
+            }
+
+            const stimuli = {
+                left: {
+                    top: { dim: data.choice_trial_left_top_dim, angle: parseInt(data.choice_trial_left_top_angle, 10) },
+                    mid: { dim: data.choice_trial_left_mid_dim, angle: parseInt(data.choice_trial_left_mid_angle, 10) },
+                    bot: { dim: data.choice_trial_left_bot_dim, angle: parseInt(data.choice_trial_left_bot_angle, 10) },
+                },
+                right: {
+                    top: { dim: data.choice_trial_right_top_dim, angle: parseInt(data.choice_trial_right_top_angle, 10) },
+                    mid: { dim: data.choice_trial_right_mid_dim, angle: parseInt(data.choice_trial_right_mid_angle, 10) },
+                    bot: { dim: data.choice_trial_right_bot_dim, angle: parseInt(data.choice_trial_right_bot_angle, 10) },
+                }
+            };
+
+            return {
+                stimuli,
+                mouseData: trackingData
+            };
+        };
+
+        // --- ANIMATION ENGINE ---
+        
+        function drawScene() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (!trialStimuli) return;
+
+            // Explicitly set default drawing styles to prevent state pollution
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 1;
+            
+            const columnMargin = canvas.width * 0.25;
+            const leftColumnX = columnMargin;
+            const rightColumnX = canvas.width - columnMargin;
+            
+            drawChoiceCol(ctx, leftColumnX, trialStimuli.left);
+            drawChoiceCol(ctx, rightColumnX, trialStimuli.right);
+        }
+
+        function animationLoop(timestamp) {
+            if (!isPlaying) {
+                animationFrameId = null;
+                return;
+            }
+
+            // Set start time on the first frame
+            if (!animationStartTime) {
+                animationStartTime = timestamp;
+            }
+
+            const currentTotalElapsedTime = elapsedTimeAtPause + (timestamp - animationStartTime);
+            
+            // Find the current mouse position based on elapsed time
+            let currentMousePos = mouseData[0] || { x: canvas.width / 2, y: canvas.height / 2 };
+            for (let i = 0; i < mouseData.length; i++) {
+                if (mouseData[i].t > currentTotalElapsedTime) {
+                    break; // Exit the loop once we've found the last position before the current time
+                }
+                currentMousePos = mouseData[i];
+            }
+            
+            // Translate absolute mouse coordinates to be relative to the canvas
+            const canvasRect = canvas.getBoundingClientRect();
+            const relativeX = currentMousePos.x - canvasRect.left;
+            const relativeY = currentMousePos.y - canvasRect.top;
+
+            // Update the spotlight
+            spotlight.style.setProperty('--x', relativeX + 'px');
+            spotlight.style.setProperty('--y', relativeY + 'px');
+            
+            // Update timeline slider and text
+            timelineSlider.value = currentTotalElapsedTime;
+            currentTimeDisplay.textContent = (currentTotalElapsedTime / 1000).toFixed(2) + 's';
+
+            // Stop if the animation is finished
+            if (!mouseData || mouseData.length === 0 || currentTotalElapsedTime >= mouseData[mouseData.length - 1].t) {
+                pauseAnimation();
+                timelineSlider.value = timelineSlider.max; // Ensure it ends at the end
+                currentTimeDisplay.textContent = (parseFloat(timelineSlider.max || 0) / 1000).toFixed(2) + 's';
+            } else {
+                animationFrameId = requestAnimationFrame(animationLoop);
+            }
+        }
+
+        function startAnimation() {
+            if (isPlaying) return;
+            isPlaying = true;
+            playPauseBtn.textContent = 'Pause';
+            playPauseBtn.classList.remove('paused');
+            animationStartTime = performance.now(); // Reset start time on play
+            requestAnimationFrame(animationLoop);
+        }
+
+        function pauseAnimation() {
+            if (!isPlaying) return;
+            isPlaying = false;
+            playPauseBtn.textContent = 'Play';
+            playPauseBtn.classList.add('paused');
+            cancelAnimationFrame(animationFrameId);
+            // Save the elapsed time at the moment of pausing
+            elapsedTimeAtPause += (performance.now() - animationStartTime) ;
+            animationStartTime = 0; // Reset for next play
+        }
+        
+        function seekAnimation(timeInMs) {
+            const wasPlaying = isPlaying;
+            if (isPlaying) pauseAnimation();
+            
+            elapsedTimeAtPause = timeInMs;
+            
+            // Find and update to the correct mouse position for the seeked time
+            let seekMousePos = mouseData[0] || { x: canvas.width / 2, y: canvas.height / 2 };
+             for (let i = 0; i < mouseData.length; i++) {
+                if (mouseData[i].t > elapsedTimeAtPause) {
+                    break;
+                }
+                seekMousePos = mouseData[i];
+            }
+
+            const canvasRect = canvas.getBoundingClientRect();
+            const relativeX = seekMousePos.x - canvasRect.left;
+            const relativeY = seekMousePos.y - canvasRect.top;
+
+            spotlight.style.setProperty('--x', relativeX + 'px');
+            spotlight.style.setProperty('--y', relativeY + 'px');
+            currentTimeDisplay.textContent = (elapsedTimeAtPause / 1000).toFixed(2) + 's';
+            
+            if (wasPlaying) startAnimation();
+        }
+
+        // --- EVENT HANDLERS ---
+        
+        renderBtn.addEventListener('click', () => {
+            let data;
+            try {
+                data = JSON.parse(jsonInput.value);
+            } catch (e) {
+                alert('Error parsing JSON. Please check the format.');
+                return;
+            }
+            
+            const parsedData = parseTrialData(data);
+            if (!parsedData) return;
+
+            // Stop any ongoing animation
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            
+            mouseData = parsedData.mouseData;
+            trialStimuli = parsedData.stimuli;
+            
+            // Reset state
+            isPlaying = false;
+            elapsedTimeAtPause = 0;
+            animationStartTime = 0;
+            
+            // Setup timeline
+            const totalDuration = mouseData.length > 0 ? mouseData[mouseData.length - 1].t : 0;
+            timelineSlider.max = totalDuration;
+            timelineSlider.value = 0;
+            totalTimeDisplay.textContent = (totalDuration / 1000).toFixed(2) + 's';
+            currentTimeDisplay.textContent = '0.00s';
+            
+            // Enable controls
+            playPauseBtn.disabled = false;
+            timelineSlider.disabled = false;
+            playPauseBtn.textContent = 'Play';
+            playPauseBtn.classList.add('paused');
+
+
+            // Draw the initial scene
+            drawScene();
+            
+            // Set initial spotlight position
+            const initialPos = mouseData[0] || { x: canvas.width / 2, y: canvas.height / 2 };
+            const canvasRect = canvas.getBoundingClientRect();
+            // If mouse data exists, translate to relative coords, otherwise center it.
+            const initialRelativeX = mouseData.length > 0 ? initialPos.x - canvasRect.left : canvas.width / 2;
+            const initialRelativeY = mouseData.length > 0 ? initialPos.y - canvasRect.top : canvas.height / 2;
+
+            spotlight.style.setProperty('--x', initialRelativeX + 'px');
+            spotlight.style.setProperty('--y', initialRelativeY + 'px');
+        });
+
+        playPauseBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                pauseAnimation();
+            } else {
+                // If at the end of animation, restart from beginning
+                if (elapsedTimeAtPause >= parseFloat(timelineSlider.max)) {
+                    elapsedTimeAtPause = 0;
+                }
+                startAnimation();
+            }
+        });
+
+        
+        timelineSlider.addEventListener('input', (e) => {
+            const seekTime = parseFloat(e.target.value);
+            seekAnimation(seekTime);
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                jsonInput.value = e.target.result;
+                // Automatically trigger render after loading file
+                renderBtn.click();
+            };
+            reader.readAsText(file);
+        });
+        
+        // Initial placeholder message on canvas
+        ctx.font = "20px Arial";
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#aaa";
+        ctx.fillText("Load or paste trial data and click 'Render Animation'", canvas.width / 2, canvas.height / 2);
+
+
+    </script>
+</body>
+</html>
+

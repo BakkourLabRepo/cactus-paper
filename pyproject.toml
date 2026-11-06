@@ -1,0 +1,85 @@
+[project]
+authors = [{name = "atakaragoz", email = "atabk@utexas.edu"}]
+dependencies = []
+name = "cactus-paper"
+requires-python = ">= 3.11"
+version = "0.1.0"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cactus_paper"]
+
+[tool.pixi.workspace]
+channels = ["ejolly", "conda-forge"]
+platforms = ["osx-arm64", "linux-64"]
+
+[tool.pixi.pypi-dependencies]
+cactus-paper = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+# paper numbers that figures AND stats read: readout profiles + Fig 5 grid (~1 min, deterministic)
+profiles = "python -m cactus_paper.analyses.contribution readout && python -m cactus_paper.analyses.contribution slope-readout && python -m cactus_paper.analyses.crossstream"
+# regenerate every exp2 figure (any cwd); figure scripts only plot
+# (pixi's task shell has no `for`, hence bash -c)
+figs-exp2 = { cmd = "bash -c 'for f in scripts/exp2/figures/*.py; do echo \"$f\"; python \"$f\" > /dev/null || exit 1; done'", depends-on = ["profiles"] }
+# canonical manuscript numbers (~2 min incl. bambi/nutpie refits; runs `profiles` first)
+stats = { cmd = "python manuscript/make_stats.py", depends-on = ["profiles"] }
+# refactor regression: diff manuscript/stats.json against ../cactus/manuscript/stats.json
+stats-check = "python manuscript/scripts/compare_stats.py"
+# de-identified data in data/shared/ -> data/{raw,processed}/ (never overwrites); run first on a fresh clone
+unpack-data = "python -m cactus_paper.data.unpack"
+# sort imports + format (black-style, 88 cols)
+fmt = "ruff check --fix src scripts manuscript && ruff format src scripts manuscript"
+# refit the model of record (writes results/fits/mor_idata.nc)
+fit-mor = "python -m cactus_paper.models.mor"
+# the shared-folds elpd ladder every model comparison in the paper is scored on
+cv-ladder = "python -m cactus_paper.models.cv"
+# nested antecedent 2x2 refits (`pixi run antecedents <run>`, or `--collect`). Runs go in parallel,
+# so BLAS/XLA are pinned to one thread per process here rather than inside the module.
+antecedents = { cmd = "python -m cactus_paper.analyses.antecedents", env = { OMP_NUM_THREADS = "1", OPENBLAS_NUM_THREADS = "1", MKL_NUM_THREADS = "1", VECLIB_MAXIMUM_THREADS = "1", XLA_FLAGS = "--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1" } }
+
+[tool.pixi.dependencies]
+jupyter = ">=1.1.1,<2"
+numpy = ">=2.3.2,<3"
+seaborn = ">=0.13.2,<0.14"
+matplotlib = ">=3.10.5,<4"
+plotly = ">=6.3.1,<7"
+polars = ">=1.34.0,<2"
+r-base = ">=4.4.3,<4.5"
+rpy2 = ">=3.6.4,<4"
+r-lme4 = ">=1.1_37,<2"
+r-lmertest = ">=3.1_3,<4"
+"r-broom.mixed" = ">=0.2.9.6,<0.3"
+r-broom = ">=1.0.10,<2"
+r-tibble = ">=3.3.0,<4"
+r-rlang = ">=1.1.6,<2"
+r-dplyr = ">=1.1.4,<2"
+numpyro = "*"
+arviz = ">=0.22.0,<0.23"
+jupytext = ">=1.19.5,<2"
+snakeviz = ">=2.2.2,<3"
+duckdb = ">=1.4.3,<2"
+pingouin = ">=0.5.5,<0.6"
+graphviz = ">=14.1.0,<15"
+hssm = ">=0.3.0,<0.4"
+gymnasium = ">=1.3.0,<2"
+nutpie = ">=0.16.8,<0.17"
+bambi = ">=0.17.2,<0.18"
+scikit-learn = ">=1.9.0,<2"
+pymer4 = ">=0.9.1,<0.10"
+pytest = ">=9.1.1,<10"
+ruff = ">=0.17.4,<0.18"
+
+[tool.ruff]
+line-length = 88
+extend-exclude = ["experiment_code", "manuscript/out"]
+
+[tool.ruff.lint]
+# only import sorting is enforced; run `pixi run fmt`
+select = ["I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["cactus_paper"]

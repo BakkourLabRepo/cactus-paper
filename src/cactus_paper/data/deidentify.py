@@ -27,9 +27,19 @@ RAW = {
 }
 
 DROP = [
-    "PROLIFIC_PID", "STUDY_ID", "SESSION_ID", "sona_id",
-    "ip", "user_agent", "referer", "accept_language",
-    "device", "browser", "browser_version", "platform", "platform_version",
+    "PROLIFIC_PID",
+    "STUDY_ID",
+    "SESSION_ID",
+    "sona_id",
+    "ip",
+    "user_agent",
+    "referer",
+    "accept_language",
+    "device",
+    "browser",
+    "browser_version",
+    "platform",
+    "platform_version",
 ]
 
 
@@ -71,7 +81,7 @@ def _q0_only(resp: str) -> str:
 def _neither_q0_only(s: str) -> str:
     if not s.startswith("NEITHER: {"):
         return s
-    q0 = json.loads(s[len("NEITHER: "):]).get("q0")
+    q0 = json.loads(s[len("NEITHER: ") :]).get("q0")
     return "NEITHER: " + json.dumps({"q0": q0}, separators=(",", ":"))
 
 
@@ -87,7 +97,7 @@ def scrub_raw(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def main():
+def main() -> None:
     for exp, path in RAW.items():
         out = OUT / "raw" / exp
         out.mkdir(parents=True, exist_ok=True)

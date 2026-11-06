@@ -1,0 +1,51 @@
+{
+  "_model": "mor + device (model of record)",
+  "n_trackpad": 45,
+  "n_mouse": 64,
+  "c_dev": {
+    "mean": -0.493,
+    "lo": -1.235,
+    "hi": 0.274
+  },
+  "w_dev": {
+    "mean": -0.474,
+    "lo": -0.991,
+    "hi": 0.037
+  },
+  "w_sd": {
+    "mean": 1.978,
+    "lo": 1.765,
+    "hi": 2.19
+  },
+  "sigma_lam": {
+    "mean": 1.866,
+    "lo": 1.475,
+    "hi": 2.295
+  },
+  "c0": {
+    "mean": 1.648,
+    "lo": 1.24,
+    "hi": 2.066
+  },
+  "s_band": {
+    "color": {
+      "mean": 0.1132,
+      "lo": 0.0749,
+      "hi": 0.1491
+    },
+    "shape": {
+      "mean": 0.1207,
+      "lo": 0.0796,
+      "hi": 0.1611
+    },
+    "line": {
+      "mean": 0.1315,
+      "lo": 0.0881,
+      "hi": 0.1727
+    }
+  },
+  "corr_gain_K_adj": 0.469,
+  "corr_lam_K_adj": 0.002,
+  "max_rhat": 1.0021,
+  "n_divergences": 0
+}

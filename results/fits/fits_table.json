@@ -1,0 +1,80 @@
+{
+  "_nominal": "4 chains x 1500 warmup / 1500 draws",
+  "rows": [
+    {
+      "label": "mor",
+      "desc": "fit of record: per-participant value map + within-band slope + magnitude reliance",
+      "chains": 4,
+      "draws": 1500,
+      "n_par": 1446,
+      "max_rhat": 1.0048,
+      "max_rhat_param": "sigma_psi",
+      "min_ess_bulk": 583,
+      "n_divergences": 0,
+      "_constant_params": []
+    },
+    {
+      "label": "participant_map_lambda",
+      "desc": "per-participant value map + magnitude reliance, no within-band slope",
+      "chains": 4,
+      "draws": 1500,
+      "n_par": 1443,
+      "max_rhat": 1.0051,
+      "max_rhat_param": "z_psi",
+      "min_ess_bulk": 627,
+      "n_divergences": 0,
+      "_constant_params": []
+    },
+    {
+      "label": "group_map_lambda",
+      "desc": "group value map + magnitude reliance",
+      "chains": 4,
+      "draws": 1500,
+      "n_par": 477,
+      "max_rhat": 1.0044,
+      "max_rhat_param": "z_w",
+      "min_ess_bulk": 1908,
+      "n_divergences": 0,
+      "_constant_params": []
+    },
+    {
+      "label": "group_map_noise",
+      "desc": "value noise in place of magnitude reliance",
+      "chains": 4,
+      "draws": 1500,
+      "n_par": 586,
+      "max_rhat": 1.0052,
+      "max_rhat_param": "w_mu",
+      "min_ess_bulk": 1556,
+      "n_divergences": 0,
+      "_constant_params": []
+    },
+    {
+      "label": "group_map_lambda_device",
+      "desc": "group_map_lambda with pointer device as a covariate on the weights and magnitude reliance",
+      "chains": 4,
+      "draws": 1500,
+      "n_par": 455,
+      "max_rhat": 1.003,
+      "max_rhat_param": "w_mu",
+      "min_ess_bulk": 1766,
+      "n_divergences": 0,
+      "_constant_params": []
+    },
+    {
+      "label": "taught_spacing_lambda",
+      "desc": "magnitude reliance over the taught spacing (value map pinned)",
+      "chains": 4,
+      "draws": 1500,
+      "n_par": 444,
+      "max_rhat": 1.0041,
+      "max_rhat_param": "z_w",
+      "min_ess_bulk": 1961,
+      "n_divergences": 0,
+      "_constant_params": [
+        "frac",
+        "u_full"
+      ]
+    }
+  ]
+}

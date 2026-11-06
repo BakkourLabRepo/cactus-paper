@@ -1,0 +1,158 @@
+{
+  "n_trials": 13076,
+  "reps": 3,
+  "folds": 5,
+  "observed": {
+    "group_map_lambda_minus_weighted_linear": 56.347453355789185,
+    "group_map_lambda_minus_taught_spacing_lambda": 41.493685483932495,
+    "taught_spacing_lambda_minus_weighted_linear": 14.85376787185669
+  },
+  "by_generator": {
+    "weighted_linear": {
+      "reps": [
+        {
+          "group_map_lambda_minus_weighted_linear": {
+            "delta": -10.052325963973999,
+            "se": 7.609757309828829
+          },
+          "group_map_lambda_minus_taught_spacing_lambda": {
+            "delta": -8.304783344268799,
+            "se": 2.7977455701264256
+          },
+          "taught_spacing_lambda_minus_weighted_linear": {
+            "delta": -1.7475426197052002,
+            "se": 7.0900057703976485
+          }
+        },
+        {
+          "group_map_lambda_minus_weighted_linear": {
+            "delta": -17.683207035064697,
+            "se": 8.336514379323356
+          },
+          "group_map_lambda_minus_taught_spacing_lambda": {
+            "delta": -3.1806538105010986,
+            "se": 4.372755220123241
+          },
+          "taught_spacing_lambda_minus_weighted_linear": {
+            "delta": -14.502553224563599,
+            "se": 7.083258987051542
+          }
+        },
+        {
+          "group_map_lambda_minus_weighted_linear": {
+            "delta": -2.789156436920166,
+            "se": 7.873460247765436
+          },
+          "group_map_lambda_minus_taught_spacing_lambda": {
+            "delta": -6.744245290756226,
+            "se": 3.6294958147519893
+          },
+          "taught_spacing_lambda_minus_weighted_linear": {
+            "delta": 3.9550888538360596,
+            "se": 7.028786664079706
+          }
+        }
+      ],
+      "group_map_lambda_minus_weighted_linear": {
+        "mean": -10.174896478652954,
+        "sd": 6.081088359459122,
+        "reps": [
+          -10.052325963973999,
+          -17.683207035064697,
+          -2.789156436920166
+        ]
+      },
+      "group_map_lambda_minus_taught_spacing_lambda": {
+        "mean": -6.076560815175374,
+        "sd": 2.1445322394260176,
+        "reps": [
+          -8.304783344268799,
+          -3.1806538105010986,
+          -6.744245290756226
+        ]
+      },
+      "taught_spacing_lambda_minus_weighted_linear": {
+        "mean": -4.09833566347758,
+        "sd": 7.716467616924377,
+        "reps": [
+          -1.7475426197052002,
+          -14.502553224563599,
+          3.9550888538360596
+        ]
+      }
+    },
+    "group_map_lambda": {
+      "reps": [
+        {
+          "group_map_lambda_minus_weighted_linear": {
+            "delta": 101.47965669631958,
+            "se": 15.27157975961362
+          },
+          "group_map_lambda_minus_taught_spacing_lambda": {
+            "delta": 83.5459156036377,
+            "se": 12.808490804442247
+          },
+          "taught_spacing_lambda_minus_weighted_linear": {
+            "delta": 17.933741092681885,
+            "se": 7.642903881138446
+          }
+        },
+        {
+          "group_map_lambda_minus_weighted_linear": {
+            "delta": 105.35167980194092,
+            "se": 15.692274971674543
+          },
+          "group_map_lambda_minus_taught_spacing_lambda": {
+            "delta": 86.44183921813965,
+            "se": 13.252706381007894
+          },
+          "taught_spacing_lambda_minus_weighted_linear": {
+            "delta": 18.90984058380127,
+            "se": 8.27055920190025
+          }
+        },
+        {
+          "group_map_lambda_minus_weighted_linear": {
+            "delta": 103.30554437637329,
+            "se": 15.280626202672597
+          },
+          "group_map_lambda_minus_taught_spacing_lambda": {
+            "delta": 81.57688856124878,
+            "se": 13.48561382840704
+          },
+          "taught_spacing_lambda_minus_weighted_linear": {
+            "delta": 21.72865581512451,
+            "se": 6.901513078983216
+          }
+        }
+      ],
+      "group_map_lambda_minus_weighted_linear": {
+        "mean": 103.3789602915446,
+        "sd": 1.581599012617022,
+        "reps": [
+          101.47965669631958,
+          105.35167980194092,
+          103.30554437637329
+        ]
+      },
+      "group_map_lambda_minus_taught_spacing_lambda": {
+        "mean": 83.85488112767537,
+        "sd": 1.9980875847967947,
+        "reps": [
+          83.5459156036377,
+          86.44183921813965,
+          81.57688856124878
+        ]
+      },
+      "taught_spacing_lambda_minus_weighted_linear": {
+        "mean": 19.52407916386922,
+        "sd": 1.6089978687754418,
+        "reps": [
+          17.933741092681885,
+          18.90984058380127,
+          21.72865581512451
+        ]
+      }
+    }
+  }
+}
